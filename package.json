@@ -33,17 +33,11 @@
   "scripts": {
     "precommit": "lint-staged",
     "start": "react-app-rewired start",
-    "build": "react-app-rewired build && sw-precache-cra --config sw-config.js",
+    "build": "react-app-rewired build && sw-precache-cra --config sw-config.js --no-minify",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "deploy": "gh-pages -d public"
   },
   "browserslist": {
     "production": [
@@ -51,11 +45,6 @@
       "not dead",
       "not ie <= 11",
       "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
     ]
   },
   "devDependencies": {
