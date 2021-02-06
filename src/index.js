@@ -1,17 +1,31 @@
+/*
+ *  Copyright (c) 2018-present, Evgeny Nadymov
+ *
+ * This source code is licensed under the GPL v.3.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+// import TelegramApp from './Components/Auth/TestPage';
+import TelegramApp from './TelegramApp';
+import registerServiceWorker from './registerServiceWorker';
+import { OPTIMIZATIONS_FIRST_START } from './Constants';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <Router>
+        <Route path='' component={TelegramApp} />
+    </Router>,
+    document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+if (OPTIMIZATIONS_FIRST_START) {
+    const register = localStorage.getItem('register');
+    if (register) {
+        registerServiceWorker();
+    }
+} else {
+    registerServiceWorker();
+}
